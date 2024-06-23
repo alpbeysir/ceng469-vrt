@@ -115,7 +115,7 @@ for(;;)
 
   // Here we check the done condition that may be set by the hit or miss shaders
   // For example the hit shader will set done=0 if a reflective material is hit,
-  // allowing for one more bounce
+  // allowing for one more bounce.
   if(prd.done == 1 || prd.depth >= pcRay.maxDepth)
     break;
 
@@ -126,3 +126,15 @@ for(;;)
   prd.done      = 1;  // If done is 1 the recursion will stop
 }
 ```
+
+## Gallery
+
+<div style="display: flex;">
+  <img src="gallery.1png" alt="Image 2" style="flex: 85%; padding: 10px;">
+</div>
+
+## Interesting Remarks
+
+### host_device.h
+
+### Performance Comparison with OpenGL Ray Tracer
