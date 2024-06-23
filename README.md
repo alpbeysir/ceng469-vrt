@@ -137,4 +137,31 @@ for(;;)
 
 ### host_device.h
 
+In order to avoid redefining data structures that are shared between the GPU and CPU, we borrowed a strategy from NVIDIA DesignWorks. The strategy is to use clever macros and include the same file in both main.cpp and the shaders:
+
+```cpp
+// These usings are used to share vector types between GLSL and C++
+#ifdef __cplusplus
+#include <glm/glm.hpp>
+// GLSL Type
+using vec2 = glm::vec2;
+using vec3 = glm::vec3;
+using vec4 = glm::vec4;
+using mat4 = glm::mat4;
+using uint = unsigned int;
+#endif
+
+// For example, an UBO may then be defined as follows:
+struct PushConstantRay
+{
+  vec4  clearColor;
+  vec3  lightPosition;
+  float lightIntensity;
+  int   lightType;
+  int   maxDepth;
+};
+// In C++ the vec4's will become glm::vec4.
+
+```
+
 ### Performance Comparison with OpenGL Ray Tracer
