@@ -1,3 +1,5 @@
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7uJs2u7WHIc?si=lGwnaFBdAUgP3mMs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 # Computer Graphics II - Vulkan Ray Tracing
 
 Traditional ray tracing methods are not hardware-accelerated. The ray generation and intersect tests are done manually. This leads to slowdowns when the scene contains many models or has a high primitive count.
@@ -179,4 +181,6 @@ struct PushConstantRay
 
 ```
 
-### Performance Comparison with OpenGL Ray Tracer
+## Performance 
+
+### Comparison with OpenGL Ray Tracer
