@@ -198,3 +198,9 @@ On an RTX 4080 Mobile, most scenes tend to be around 600-650 FPS.
 One thing that definitely affects performance is the reflection/recursion limit. Since GPUs are not optimized for recursion, reducing the limit helps increase performance on scenes with mirror materials.
 
 ### Comparison with OpenGL Ray Tracer
+
+Another 469 project was to implement ray tracing with OpenGL. We compared our performance statistics with theirs. 
+
+| Scene | RTX FPS | OpenGL FPS |
+| ------------- | ------------- |
+| Suzanne Monkey | 670fps | 70fps |
