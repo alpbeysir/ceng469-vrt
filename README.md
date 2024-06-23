@@ -84,3 +84,45 @@ vkCmdPushConstants(cmdBuf, raytracing_pipeline_layout,
 
 vkCmdTraceRaysKHR(cmdBuf, &rgen_region, &miss_region, &hit_region, &call_region, vk_window_size.width, vk_window_size.height, 1);
 ```
+
+### Materials & Textures
+
+Up until this point we have been focused on the casting & bouncing of rays in the scene. Additionally, we need to know the materials of each object when a ray hits. In the hit shader of the pipeline, we are given gl_PrimitiveID which represents which triangle of the object was hit, and gl_InstanceCustomIndexEXT which represents the object that was hit. Using these two pieces of information we can figure out the exact location that was hit. This allows us to calculate the position and normal of the hit location. After we get the position and normal, we may proceed to do the traditional material and texture lookups.
+
+### Reflection
+
+Reflection is handled using pseudo-recursion in the ray generation shader. Refer to the comments in the shader snippet below.
+
+```cpp
+for(;;)
+{
+  // Here is the calling other shaders part
+  traceRayEXT(topLevelAS,     // acceleration structure
+              rayFlags,       // rayFlags
+              0xFF,           // cullMask
+              0,              // sbtRecordOffset
+              0,              // sbtRecordStride
+              0,              // missIndex
+              origin.xyz,     // ray origin
+              tMin,           // ray min range
+              direction.xyz,  // ray direction
+              tMax,           // ray max range
+              0               // payload (location = 0)
+  );
+  hitValue += prd.hitValue * prd.attenuation;
+  
+  prd.depth++;
+
+  // Here we check the done condition that may be set by the hit or miss shaders
+  // For example the hit shader will set done=0 if a reflective material is hit,
+  // allowing for one more bounce
+  if(prd.done == 1 || prd.depth >= pcRay.maxDepth)
+    break;
+
+  // Bounce with payload results
+  origin.xyz    = prd.rayOrigin;
+  direction.xyz = prd.rayDir;
+
+  prd.done      = 1;  // If done is 1 the recursion will stop
+}
+```
