@@ -49,7 +49,7 @@ The bottom level AS keeps vertex and intersection data and the top level AS keep
 
 Descriptor sets are basically the Vulkan equivalent of OpenGL SSBOs. In the ray tracing shaders, we need to access the previously generated acceleration structures and the off-screen buffer to which we will be rendering. In order to do that, we need to create a descriptor set with that information. 
 
-// TODO explain in detail
+
 
 ## Ray Tracing Pipeline
 
@@ -204,3 +204,8 @@ Another 469 project was to implement ray tracing with OpenGL. We compared our pe
 | Scene | RTX FPS | OpenGL FPS |
 | ------------- | ------------- | ------------- |
 | Suzanne Monkey | 670fps | 70fps |
+
+## References & Resources
+
+[NVIDIA Ray Tracing Tutorial](https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tutorial.md.html)
+[Difference Between Hardware- and Software-Accelerated Ray Tracing](https://blogs.nvidia.com/blog/whats-the-difference-between-hardware-and-software-accelerated-ray-tracing/)
