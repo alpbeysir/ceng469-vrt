@@ -42,3 +42,20 @@ The bottom level AS keeps vertex and intersection data and the top level AS keep
 <div style="display: flex;">
   <img src="acc.png" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
+
+## Descriptor Sets
+
+Descriptor sets are basically the Vulkan equivalent of OpenGL SSBOs. In the ray tracing shaders, we need to access the previously generated acceleration structures and the off-screen buffer to which we will be rendering. In order to do that, we need to create a descriptor set with that information. 
+
+// TODO explain in detail
+
+## Ray Tracing Pipeline
+
+Traditional graphics pipelines are sequential. A list of stages is given to the GPU and a shader is executed in each of these stages. The final output image is then displayed on the screen. Ray tracing pipelines do not have this property as any shader
+in the pipeline may be needed at any time. This is because of the nature of ray intersection. When a ray is cast from a location, it is not known in advance which object -or the skybox- it will hit. Any object's shader output may be needed to process that ray's bounce. To model this process, a separate stage is added to the pipeline for each 'state' of a ray. These stages are as follows:
+
+1. Ray generation: The initial ray casting from the camera happens here
+2. Ray miss: Called by the GPU when a ray doesn't hit anything
+3. Ray hit: Called by the GPU when an intersection test succeeds
+
+Additional optional stages may be used depending on the complexity of the program.
