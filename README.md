@@ -85,6 +85,8 @@ vkCmdPushConstants(cmdBuf, raytracing_pipeline_layout,
 vkCmdTraceRaysKHR(cmdBuf, &rgen_region, &miss_region, &hit_region, &call_region, vk_window_size.width, vk_window_size.height, 1);
 ```
 
+When the above command finishes execution, the image buffer will have the ray-traced scene pixel values. We do astandard post-process gamma correction and display the result.
+
 ### Materials & Textures
 
 Up until this point we have been focused on the casting & bouncing of rays in the scene. Additionally, we need to know the materials of each object when a ray hits. In the hit shader of the pipeline, we are given gl_PrimitiveID which represents which triangle of the object was hit, and gl_InstanceCustomIndexEXT which represents the object that was hit. Using these two pieces of information we can figure out the exact location that was hit. This allows us to calculate the position and normal of the hit location. After we get the position and normal, we may proceed to do the traditional material and texture lookups.
@@ -140,6 +142,11 @@ for(;;)
 <div style="display: flex;">
   <img src="cornell.jpg" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
+
+## Programming Details
+
+We used NVIDIA-specific Vulkan Ray Tracing extension library to make the issuance of RT commands easier. For obj file loading, we use the standard header-only library tinyobjloader.
+GLM and GLFW play their original roles. 
 
 ## Interesting Remarks
 
