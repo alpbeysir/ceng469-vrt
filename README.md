@@ -183,4 +183,18 @@ struct PushConstantRay
 
 ## Performance 
 
+Performance does not seem to vary much as the scene complexity changes. We suspect that this is because RTX cards are optimized to keep performance high unless extreme levels of scene complexity are reached (10 million verts etc.) 
+
+| Scene | Average FPS |
+| ------------- | ------------- |
+| No Mirror Cube Cornellbox | 690fps |
+| Mirror Cube Cornellbox  | 670fps |
+| Mirror Spheres Cornellbox | 630fps |
+| Dragon | 649fps |
+| Two Mirrors One Cube (NVIDIA Scene) | 665fps |
+
+On an RTX 4080 Mobile, most scenes tend to be around 600-650 FPS.
+
+One thing that definitely affects performance is the reflection/recursion limit. Since GPUs are not optimized for recursion, reducing the limit helps increase performance on scenes with mirror materials.
+
 ### Comparison with OpenGL Ray Tracer
