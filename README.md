@@ -18,10 +18,27 @@ In hardware ray tracing, the above steps stay the same but the GPU 'helps' us wi
 ## Acceleration Structures
 
 In the above list, step 2 requires us to iterate through all the objects in the scene and run an intersection calculation for each. This becomes prohibitively expensive as the triangle count grows. On the CPU, BVH algorithm may be used to reduce the number
-of intersection checks. The GPU ray tracing pipeline has a similar concept named acceleration structures. Before rendering the scene, these acceleration structures are generated using the mesh data and uploaded to the GPU. Then when an intersection query
+of intersection checks. The GPU ray tracing pipeline has a similar concept named acceleration structures. Before rendering the scene, these acceleration structures are generated using the mesh data. Then when an intersection query
 result is needed during rendering, the shaders access this structure to get the required data.
+
+The generation of acceleration structures is done in two steps:
+
+### Bottom-Level AS Generation
+
+1. For each model, get the vertex and index buffers.
+2. Allocate scratch memory on the GPU to be used for generation.
+3. Fill a command buffer with AC generation and compaction commands.
+4. Send the command buffer for execution on the GPU.
+
+### Top-Level AS Generation
+
+1. For each model instance, fill out a VkAccelerationStructureInstanceKHR struct.
+2. Fill command buffer with necessary commands.
+3. Upload the filled structs to the GPU.
+4. Mark command buffer for execution.
+
+The bottom level AS keeps vertex and intersection data and the top level AS keeps material & transform data for each model instance.
 
 <div style="display: flex;">
   <img src="acc.png" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
-
