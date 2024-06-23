@@ -130,7 +130,7 @@ for(;;)
 ## Gallery
 
 <div style="display: flex;">
-  <img src="gallery.1png" alt="Image 2" style="flex: 85%; padding: 10px;">
+  <img src="gallery1.png" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
 
 ## Interesting Remarks
