@@ -207,5 +207,6 @@ Another 469 project was to implement ray tracing with OpenGL. We compared our pe
 
 ## References & Resources
 
-[NVIDIA Ray Tracing Tutorial](https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tutorial.md.html)
-[Difference Between Hardware- and Software-Accelerated Ray Tracing](https://blogs.nvidia.com/blog/whats-the-difference-between-hardware-and-software-accelerated-ray-tracing/)
+[NVIDIA Ray Tracing Tutorial](https://nvpro-samples.github.io/vk_raytracing_tutorial_KHR/vkrt_tutorial.md.html) - Very helpful tutorial that explained everything step-by-step
+
+[Difference Between Hardware- and Software-Accelerated Ray Tracing](https://blogs.nvidia.com/blog/whats-the-difference-between-hardware-and-software-accelerated-ray-tracing/) - For comparison to traditional between
