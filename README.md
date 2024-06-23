@@ -63,7 +63,7 @@ Additional optional stages may be used depending on the complexity of the progra
 ### Shader Binding Table
 
 When a ray is traced on the GPU, the information on which shader to call of which object is provided by the shader binding table (SBT). This SBT is created on the CPU and is basically an array of function pointers with specific alignment rules.
-The GPU uses the SBT as a lookup table to know which shader function to invoke for a given ray hit (or miss).
+The GPU uses the SBT as a lookup table to know which shader function to invoke for a given ray hit (or miss). There should be a region of the SBT for each stage of the RT pipeline.
 
 <div style="display: flex;">
   <img src="sbt.png" alt="Image 2" style="flex: 85%; padding: 10px;">
