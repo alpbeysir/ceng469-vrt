@@ -133,6 +133,14 @@ for(;;)
   <img src="gallery1.png" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
 
+<div style="display: flex;">
+  <img src="dragon.jpg" alt="Image 2" style="flex: 85%; padding: 10px;">
+</div>
+
+<div style="display: flex;">
+  <img src="cornell.jpg" alt="Image 2" style="flex: 85%; padding: 10px;">
+</div>
+
 ## Interesting Remarks
 
 ### host_device.h
