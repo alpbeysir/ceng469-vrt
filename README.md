@@ -202,5 +202,5 @@ One thing that definitely affects performance is the reflection/recursion limit.
 Another 469 project was to implement ray tracing with OpenGL. We compared our performance statistics with theirs. 
 
 | Scene | RTX FPS | OpenGL FPS |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 | Suzanne Monkey | 670fps | 70fps |
