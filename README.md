@@ -69,3 +69,18 @@ The GPU uses the SBT as a lookup table to know which shader function to invoke f
   <img src="sbt.png" alt="Image 2" style="flex: 85%; padding: 10px;">
 </div>
 
+## Ray Tracing
+
+After all of this initialization, we may finally fill a command buffer with the TraceRays command and bind our pipeline and descriptor sets:
+
+```cpp
+vkCmdBindPipeline(cmdBuf, VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR, raytracing_pipeline);
+vkCmdBindDescriptorSets(cmdBuf, VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR, raytracing_pipeline_layout, 0,
+                        (uint32_t)descSets.size(), descSets.data(), 0, nullptr);
+vkCmdPushConstants(cmdBuf, raytracing_pipeline_layout,
+                   VK_SHADER_STAGE_RAYGEN_BIT_KHR | VK_SHADER_STAGE_CLOSEST_HIT_BIT_KHR | VK_SHADER_STAGE_MISS_BIT_KHR,
+                   0, sizeof(PushConstantRay), &m_pcRay);
+
+
+vkCmdTraceRaysKHR(cmdBuf, &rgen_region, &miss_region, &hit_region, &call_region, vk_window_size.width, vk_window_size.height, 1);
+```
